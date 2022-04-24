@@ -61,6 +61,13 @@ app.post("/register", (req, res) => {
             }
         );
     });
+
+    newNote = {
+        "username": username,
+        "password": password
+    }
+
+    res.status(201).json(newNote)
 });
 
 app.get("/login", (req, res) => {
