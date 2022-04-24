@@ -14,7 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(
     cors({
-        origin: ["http://localhost:3000"],
+        origin: ["https://main.d21qxmuvcvmgb9.amplifyapp.com"],
         methods: ["GET", "POST"],
         credentials: true,
     })
@@ -36,9 +36,11 @@ app.use(
 
 const db = mysql.createConnection({
     user: "root",
-    host: "localhost",
-    password: "Pepicho123.",
-    database: "tallerwebdb"
+    host: "mysql.cibdep1mea2n.us-east-1.rds.amazonaws.com",
+    //host: "localhost",
+    password: "Contrasena123.",
+    database: "tallerweb",
+    port: 3306
 });
 
 app.post("/register", (req, res) => {
@@ -98,7 +100,7 @@ app.post("/login", (req, res) => {
     );
 });
 
-
-app.listen(3001, () => {
-    console.log("Server esta ejecutandose en el puerto 3001");
-});
+const PORT = process.env.PORT || 3001
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`)
+})
