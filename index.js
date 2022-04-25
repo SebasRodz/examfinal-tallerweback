@@ -14,8 +14,8 @@ const app = express();
 app.use(express.json());
 app.use(
     cors({
-        origin: ["https://main.d21qxmuvcvmgb9.amplifyapp.com"],
-        // origin: ["http://localhost:3000"]
+        // origin: ["https://main.d21qxmuvcvmgb9.amplifyapp.com"],
+        origin: ["http://localhost:3000"],
         methods: ["GET", "POST"],
         credentials: true,
     })
@@ -96,13 +96,16 @@ app.post("/login", (req, res) => {
                     if (response) {
                         req.session.user = result;
                         console.log(req.session.user);
-                        res.send(result);
+                        // res.send(result);
+                        res.send({ loggedIn: true, user: result });
                     } else {
-                        res.send({ message: "Contraseña incorrecta" });
+                        // res.send({ message: "Contraseña incorrecta" });
+                        res.send({ loggedIn: false, user: result });
                     }
                 });
             } else {
-                res.send({ message: "Usuario no existente" });
+                // res.send({ message: "Usuario no existente" });
+                res.send({ loggedIn: false, user: result });
             }
         }
     );
